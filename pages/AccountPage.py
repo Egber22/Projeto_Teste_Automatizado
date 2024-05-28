@@ -8,14 +8,16 @@ from pages.PageObject import PageObject
 class AccountPage(PageObject):
 
     add_deposit = (By.CSS_SELECTOR, '[ng-click="deposit()"]')
-    #add_deposit = (By.CLASS_NAME, 'btn btn-lg tab btn-primary')
     amount = (By.CSS_SELECTOR, '[type="number"]')
     deposit_button = (By.CSS_SELECTOR, '[type="submit"]')
     message_sucessfull_element = (By.CSS_SELECTOR, '[ng-show="message"]')
     message_sucessfull = 'Deposit Successful'
-    #withdrawl_button = (By.CSS_SELECTOR, '[ng-click="withdrawl()"]') withdrawl()
     withdrawl_button = (By.CSS_SELECTOR, '[ng-class="btnClass3"]')
     message_withdrawl_sucessfull = 'Transaction successful'
+    infos_account = (By.CLASS_NAME, '[class ="ng-binding"]')
+    message_error_element = (By.CSS_SELECTOR, '[ng-show="message"]')
+    message_error = 'Transaction Failed. You can not withdraw amount more than the balance.'
+    withdrawl_deposit = (By.CSS_SELECTOR, '[ng-click="withdrawl()"]')
 
     # Clicar no botão Adicionar
     def __init__(self, driver):
@@ -71,6 +73,18 @@ class AccountPage(PageObject):
         has_withdrawl_message_text = message_withdrawl_element.text == self.message_withdrawl_sucessfull
         return is_message_withdrawl_displayed and has_withdrawl_message_text
 
+    #Retirar valor maior que o saldo
+    def update_withdrawl_above_balance(self):
+        select_element5 = WebDriverWait(self.driver, 4).until(
+            expected_conditions.visibility_of_element_located(self.amount))
+        select_element5.send_keys(10000)
 
+    #Validar mensagem de retirada não autorizada
+    def has_message_transaction_failed(self):
+
+        message_fail = self.driver.find_element(*self.message_error_element)
+        is_message_fail_displayed = message_fail.is_displayed()
+        has_message__error_text = message_fail.text == self.message_error
+        return is_message_fail_displayed and has_message__error_text
 
 
