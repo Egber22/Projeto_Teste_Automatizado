@@ -26,3 +26,14 @@ class ManagerPage(PageObject):
             expected_conditions.element_to_be_clickable(self.add_customer))
         add_customer_button_element.click()
 
+    def click_open_account_button(self):
+        open_account_button_element = WebDriverWait(self.driver, 5).until(
+            expected_conditions.element_to_be_clickable(self.open_Account))
+        open_account_button_element.click()
+
+    def click_customers_button(self):
+        customers_button_element = WebDriverWait(self.driver, 5).until(
+            expected_conditions.element_to_be_clickable(self.customers))
+        customers_button_element.click()
+
+
