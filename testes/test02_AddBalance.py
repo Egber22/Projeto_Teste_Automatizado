@@ -1,4 +1,4 @@
-from pages.AccountPage import AccountPage
+from pages.OpenAccountPage import AccountPage
 from pages.CustomerPage import CustomerPage
 
 
