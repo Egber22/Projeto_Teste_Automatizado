@@ -32,7 +32,7 @@ class CustomerPage(PageObject):
         login_button_element = WebDriverWait(self.driver, 5).until(
             expected_conditions.element_to_be_clickable(self.login_button))
         login_button_element.click()
-        time.sleep(5)
+
 
     #def login_customer(self):
      #   welcome_message_element = self.driver.find_element(*self.welcome_message)

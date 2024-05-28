@@ -12,7 +12,6 @@ class Test_SearchUser:
         customer_page.select_first_customer()
         customer_page.click_login_button()
 
-
         assert customer_page.is_url_customer_account(), 'URL não encontrada!'
 
 
