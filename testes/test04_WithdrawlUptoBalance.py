@@ -1,7 +1,7 @@
 from pages.AccountPage import AccountPage
 from pages.CustomerPage import CustomerPage
 
-class Test_WithDrawlBalanceAboveAvailabelBalance:
+class Test_WithDrawlUptoBalance:
 
     def test_withdrawl_deposit_availabel_balance(self, setup):
         login_page = setup
@@ -15,7 +15,7 @@ class Test_WithDrawlBalanceAboveAvailabelBalance:
         account_page = AccountPage(driver=login_page.driver)
 
         account_page.withdrawl_balance()
-        account_page.update_withdrawl_above_balance_forma_burrinha()
+        account_page.update_withdrawl_above_balance()
         account_page.confirm_withdrawl()
 
         assert account_page.has_message_transaction_failed(), 'Teste não realizado'
