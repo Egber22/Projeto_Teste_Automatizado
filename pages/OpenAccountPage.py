@@ -63,12 +63,7 @@ class OpenAccountPage(PageObject):
 
         # Pegar o texto da mensagem de retirada feita com sucesso
     def has_withdrawl_message_sucessfull(self):
-        time.sleep(5)
         message_withdrawl_element = self.driver.find_element(*self.message_sucessfull_element)
         is_message_withdrawl_displayed = message_withdrawl_element.is_displayed()
         has_withdrawl_message_text = message_withdrawl_element.text == self.message_withdrawl_sucessfull
         return is_message_withdrawl_displayed and has_withdrawl_message_text
-
-
-
-

@@ -1,7 +1,6 @@
 from pages.OpenAccountPage import OpenAccountPage
 from pages.CustomerPage import CustomerPage
 
-
 class Test_AddDeposit:
     def test_add_deposit(self, setup):
         login_page = setup

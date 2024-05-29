@@ -1,7 +1,6 @@
 from pages.AddCustPage import AddCustPage
 from pages.ManagerPage import ManagerPage
 
-
 class Test_AddCustomers:
 
     def test_addCustomers (self, setup):

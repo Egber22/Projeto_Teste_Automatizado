@@ -1,4 +1,3 @@
-from pages.AccountPage import AccountPage
 from pages.CustomerPage import CustomerPage
 
 class Test_ResetTransactions:

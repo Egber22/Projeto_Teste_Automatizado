@@ -1,7 +1,6 @@
-import time
-
 from pages.ListPage import ListPage
 from pages.ManagerPage import ManagerPage
+
 class Test_searchCustomer:
     def test_search_customer(self, setup):
         login_page = setup
@@ -12,4 +11,4 @@ class Test_searchCustomer:
 
         search_customer_page = ListPage(driver=login_page.driver)
         search_customer_page.search_first_name_customer()
-        assert search_customer_page.is_name_searched(),'Cliente não encontrado'
+        assert search_customer_page.is_name_searched() == search_customer_page.first_name_customer,'Cliente não encontrado'

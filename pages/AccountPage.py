@@ -1,5 +1,3 @@
-import time
-
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
@@ -67,7 +65,6 @@ class AccountPage(PageObject):
 
         # Pegar o texto da mensagem de retirada feita com sucesso
     def has_withdrawl_message_sucessfull(self):
-        time.sleep(5)
         message_withdrawl_element = self.driver.find_element(*self.message_sucessfull_element)
         is_message_withdrawl_displayed = message_withdrawl_element.is_displayed()
         has_withdrawl_message_text = message_withdrawl_element.text == self.message_withdrawl_sucessfull
@@ -81,7 +78,6 @@ class AccountPage(PageObject):
 
     #Validar mensagem de retirada não autorizada
     def has_message_transaction_failed(self):
-
         message_fail = self.driver.find_element(*self.message_error_element)
         is_message_fail_displayed = message_fail.is_displayed()
         has_message__error_text = message_fail.text == self.message_error

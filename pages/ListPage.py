@@ -33,13 +33,7 @@ class ListPage(PageObject):
         element = WebDriverWait(self.driver, 10).until(
             expected_conditions.element_to_be_clickable(self.first_name_list))
         element_text = element.text
-        return element
-
-       # if (element_text == self.first_name_customer):
-           # print('encontrado')
-
-
-
+        return element_text
 
     def click_delete_button(self):
         delete_button_element = WebDriverWait(self.driver, 5).until(
