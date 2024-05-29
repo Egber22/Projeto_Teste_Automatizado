@@ -12,6 +12,4 @@ class Test_searchCustomer:
 
         search_customer_page = ListPage(driver=login_page.driver)
         search_customer_page.search_first_name_customer()
-        time.sleep(2)
         assert search_customer_page.is_name_searched(),'Cliente não encontrado'
-        time.sleep(2)

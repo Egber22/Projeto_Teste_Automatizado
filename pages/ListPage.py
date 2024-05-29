@@ -9,7 +9,7 @@ class ListPage(PageObject):
     search_field = (By.CSS_SELECTOR,'[ng-model="searchCustomer"]')
     account_number = '1001'
     first_name_customer = 'Albus'
-    first_name_list = (By.XPATH,"//table/tbody/tr/td[1]")
+    first_name_list = (By.CLASS_NAME,'ng-binding')
     account_number_customer = (By.CSS_SELECTOR, '["ng-binding ng-scope"]')
     delete_button = (By.CSS_SELECTOR,'[ng-click="deleteCust(cust)"]')
     def __init__(self, driver):
@@ -31,11 +31,13 @@ class ListPage(PageObject):
     # CONTINUAR COMPARAÇÃO ENTRE CAMPOS
     def is_name_searched(self):
         element = WebDriverWait(self.driver, 10).until(
-            expected_conditions.element_to_be_clickable((By.XPATH,"//table/tbody/tr/td[1]")))
+            expected_conditions.element_to_be_clickable(self.first_name_list))
         element_text = element.text
+        return element
 
-        if (element_text == self.first_name_customer):
-            print('encontrado')
+       # if (element_text == self.first_name_customer):
+           # print('encontrado')
+
 
 
 
