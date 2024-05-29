@@ -1,4 +1,4 @@
-from pages.OpenAccountPage import AccountPage
+from pages.OpenAccountPage import OpenAccountPage
 from pages.CustomerPage import CustomerPage
 
 
@@ -11,7 +11,7 @@ class Test_AddDeposit:
         customer_page.select_first_customer()
         customer_page.click_login_button()
 
-        account_page = AccountPage(driver=login_page.driver)
+        account_page = OpenAccountPage(driver=login_page.driver)
         account_page.add_balance()
         account_page.update_balance()
         account_page.confirm_balance()

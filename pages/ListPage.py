@@ -1,9 +1,6 @@
-import time
-
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
-
 from pages.PageObject import PageObject
 
 
@@ -11,6 +8,8 @@ class ListPage(PageObject):
     url_list = 'https://www.globalsqa.com/angularJs-protractor/BankingProject/#/manager/list'
     search_field = (By.CSS_SELECTOR,'[ng-model="searchCustomer"]')
     account_number = '1001'
+    first_name_customer = 'Albus'
+    first_name_list = (By.XPATH,"//table/tbody/tr/td[1]")
     account_number_customer = (By.CSS_SELECTOR, '["ng-binding ng-scope"]')
     delete_button = (By.CSS_SELECTOR,'[ng-click="deleteCust(cust)"]')
     def __init__(self, driver):
@@ -19,10 +18,26 @@ class ListPage(PageObject):
     def is_url_list(self):
         return self.is_url(self.url_list)
 
-    def search_custumer(self):
+    def search_account_custumer(self):
         search_custumer_element = WebDriverWait(self.driver, 5).until(
             expected_conditions.element_to_be_clickable(self.search_field))
         search_custumer_element.send_keys(self.account_number)
+
+    def search_first_name_customer(self):
+        search_customer_element = WebDriverWait(self.driver, 5).until(
+            expected_conditions.element_to_be_clickable(self.search_field))
+        search_customer_element.send_keys(self.first_name_customer)
+
+    # CONTINUAR COMPARAÇÃO ENTRE CAMPOS
+    def is_name_searched(self):
+        element = WebDriverWait(self.driver, 10).until(
+            expected_conditions.element_to_be_clickable((By.XPATH,"//table/tbody/tr/td[1]")))
+        element_text = element.text
+
+        if (element_text == self.first_name_customer):
+            print('encontrado')
+
+
 
     def click_delete_button(self):
         delete_button_element = WebDriverWait(self.driver, 5).until(
