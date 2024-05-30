@@ -1,5 +1,3 @@
-import time
-
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
@@ -51,17 +49,14 @@ class AddCustPage(PageObject):
         type_duplicate_first_name_element = WebDriverWait(self.driver, 5).until(
             expected_conditions.element_to_be_clickable(self.first_name))
         type_duplicate_first_name_element .send_keys(self.first_name_duplicate)
-        time.sleep(3)
 
         type_duplicate_last_name_element = WebDriverWait(self.driver, 5).until(
             expected_conditions.element_to_be_clickable(self.last_name))
         type_duplicate_last_name_element.send_keys(self.last_name_duplicate)
-        time.sleep(3)
 
         type_text_element3 = WebDriverWait(self.driver, 5).until(
             expected_conditions.element_to_be_clickable(self.post_code))
         type_text_element3.send_keys(self.post_code_duplicate)
-        time.sleep(3)
 
     def text_alert(self):
         alert_text = WebDriverWait(self.driver, 5).until(expected_conditions.Alert).text

@@ -19,6 +19,8 @@ class AccountPage(PageObject):
     withdrawl_deposit = (By.CSS_SELECTOR, '[ng-click="withdrawl()"]')
     account_number = (By.CLASS_NAME, 'ng-binding')
 
+    account_number2 = (By.XPATH,"//div[2]/strong[1]")
+
     def __init__(self, driver):
         super(AccountPage, self).__init__(driver=driver)
 
@@ -86,13 +88,25 @@ class AccountPage(PageObject):
         return is_message_fail_displayed and has_message__error_text
 
     # Selecionar  outra conta
-    def select_second_account(self):
-        second_account_element = WebDriverWait(self.driver, 4).until(
+    def select_second_account(self, first_account_number='1001',second_account_number='1002'):
+        second_account_element1 = WebDriverWait(self.driver, 4).until(
             expected_conditions.visibility_of_element_located((By.ID, 'accountSelect')))
-        Select(second_account_element).select_by_visible_text('1002')
+        Select(second_account_element1).select_by_visible_text(first_account_number)
 
-    def verify_change_account(self):
-        select_element2 = WebDriverWait(self.driver, 4).until(
-            expected_conditions.visibility_of_element_located(self.account_number))
+        element1 = WebDriverWait(self.driver, 10).until(
+            expected_conditions.element_to_be_clickable(self.account_number2))
+        element_text1 = element1.text
 
 
+        second_account_element2 = WebDriverWait(self.driver, 4).until(
+            expected_conditions.visibility_of_element_located((By.ID, 'accountSelect')))
+        Select(second_account_element2).select_by_visible_text(second_account_number)
+
+        element2 = WebDriverWait(self.driver, 10).until(
+            expected_conditions.element_to_be_clickable(self.account_number2))
+        element_text2 = element2.text
+
+        if (element_text1 != element_text2):
+            return 'Conta alterada'
+        else:
+            return 'Conta não alterada'
