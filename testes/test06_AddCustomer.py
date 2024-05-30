@@ -3,7 +3,7 @@ from pages.ManagerPage import ManagerPage
 
 class Test_AddCustomers:
 
-    def test_addCustomers (self, setup):
+    def test_addCustomer (self, setup):
 
         login_page = setup
         login_page.click_bank_manager_login_button()
