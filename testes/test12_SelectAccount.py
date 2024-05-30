@@ -11,8 +11,7 @@ class Test_AddDeposit:
         customer_page.click_login_button()
 
         account_page = AccountPage(driver=login_page.driver)
-        account_page.add_balance()
-        account_page.update_balance()
-        account_page.confirm_balance()
+        account_page.select_second_account()
 
-        assert account_page.has_message_sucessfull(), 'Saldo não atualizado'
+
+

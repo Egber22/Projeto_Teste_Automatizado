@@ -2,6 +2,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
 from pages.PageObject import PageObject
+from selenium.webdriver.support.select import Select
 
 class AccountPage(PageObject):
 
@@ -16,27 +17,28 @@ class AccountPage(PageObject):
     message_error_element = (By.CSS_SELECTOR, '[ng-show="message"]')
     message_error = 'Transaction Failed. You can not withdraw amount more than the balance.'
     withdrawl_deposit = (By.CSS_SELECTOR, '[ng-click="withdrawl()"]')
+    account_number = (By.CLASS_NAME, 'ng-binding')
 
-    # Clicar no botão Adicionar
     def __init__(self, driver):
         super(AccountPage, self).__init__(driver=driver)
 
+    # Clicar no botão Adicionar
     def add_balance(self):
-        select_element1 = WebDriverWait(self.driver, 5).until(
+        add_balance_element = WebDriverWait(self.driver, 5).until(
             expected_conditions.element_to_be_clickable(self.add_deposit))
-        select_element1.click()
+        add_balance_element.click()
 
     # Enviar valor no campo deposito
     def update_balance(self):
-        select_element2 = WebDriverWait(self.driver, 4).until(
+        update_balance_element = WebDriverWait(self.driver, 4).until(
             expected_conditions.visibility_of_element_located(self.amount))
-        select_element2.send_keys(200)
+        update_balance_element.send_keys(200)
 
     # Confirmar novo saldo
     def confirm_balance(self):
-        select_element3 = WebDriverWait(self.driver, 4).until(
+        confirm_balance_element = WebDriverWait(self.driver, 4).until(
             expected_conditions.visibility_of_element_located(self.deposit_button))
-        select_element3.click()
+        confirm_balance_element.click()
 
     # Pegar o texto da mensagem de sucesso
     def has_message_sucessfull(self):
@@ -45,25 +47,25 @@ class AccountPage(PageObject):
         has_message_text = message_element.text == self.message_sucessfull
         return is_message_displayed and has_message_text
 
-        # Clicar no botão Withdrawl
+    # Clicar no botão Withdrawl
     def withdrawl_balance(self):
-        select_element4 = WebDriverWait(self.driver, 5).until(
+        withdrawl_balance_element = WebDriverWait(self.driver, 5).until(
             expected_conditions.element_to_be_clickable(self.withdrawl_button))
-        select_element4.click()
+        withdrawl_balance_element.click()
 
-        # Informar um valor para ser retirado da conta
+    # Informar um valor para ser retirado da conta
     def update_withdrawl_balance(self):
-        select_element5 = WebDriverWait(self.driver, 7).until(
+        update_withdrawl_element = WebDriverWait(self.driver, 7).until(
             expected_conditions.visibility_of_element_located(self.amount))
-        select_element5.send_keys(50)
+        update_withdrawl_element.send_keys(50)
 
-        # Confirmar retirada
+    # Confirmar retirada
     def confirm_withdrawl(self):
-        select_element6 = WebDriverWait(self.driver, 5).until(
+        confirm_withdrawl_element = WebDriverWait(self.driver, 5).until(
             expected_conditions.visibility_of_element_located(self.deposit_button))
-        select_element6.click()
+        confirm_withdrawl_element.click()
 
-        # Pegar o texto da mensagem de retirada feita com sucesso
+    # Pegar o texto da mensagem de retirada feita com sucesso
     def has_withdrawl_message_sucessfull(self):
         message_withdrawl_element = self.driver.find_element(*self.message_sucessfull_element)
         is_message_withdrawl_displayed = message_withdrawl_element.is_displayed()
@@ -72,9 +74,9 @@ class AccountPage(PageObject):
 
     #Retirar valor maior que o saldo
     def update_withdrawl_above_balance(self):
-        select_element5 = WebDriverWait(self.driver, 4).until(
+        withdrawl_upto_balance_element = WebDriverWait(self.driver, 4).until(
             expected_conditions.visibility_of_element_located(self.amount))
-        select_element5.send_keys(10000)
+        withdrawl_upto_balance_element.send_keys(10000)
 
     #Validar mensagem de retirada não autorizada
     def has_message_transaction_failed(self):
@@ -82,5 +84,15 @@ class AccountPage(PageObject):
         is_message_fail_displayed = message_fail.is_displayed()
         has_message__error_text = message_fail.text == self.message_error
         return is_message_fail_displayed and has_message__error_text
+
+    # Selecionar  outra conta
+    def select_second_account(self):
+        second_account_element = WebDriverWait(self.driver, 4).until(
+            expected_conditions.visibility_of_element_located((By.ID, 'accountSelect')))
+        Select(second_account_element).select_by_visible_text('1002')
+
+    def verify_change_account(self):
+        select_element2 = WebDriverWait(self.driver, 4).until(
+            expected_conditions.visibility_of_element_located(self.account_number))
 
 

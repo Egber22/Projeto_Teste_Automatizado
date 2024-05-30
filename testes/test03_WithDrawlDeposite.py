@@ -1,4 +1,4 @@
-from pages.OpenAccountPage import OpenAccountPage
+from pages.AccountPage import AccountPage
 from pages.CustomerPage import CustomerPage
 
 class Test_WithDrawlDeposit:
@@ -11,7 +11,7 @@ class Test_WithDrawlDeposit:
         customer_page.select_first_customer()
         customer_page.click_login_button()
 
-        account_page = OpenAccountPage(driver=login_page.driver)
+        account_page = AccountPage(driver=login_page.driver)
 
         account_page.withdrawl_balance()
         account_page.update_withdrawl_balance()
