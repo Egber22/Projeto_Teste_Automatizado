@@ -1,9 +1,5 @@
 import pytest
-from selenium.webdriver.common.by import By
-
-from pages.CustomerPage import CustomerPage
 from pages.LoginPage import LoginPage
-
 
 @pytest.fixture()
 def setup():
@@ -14,4 +10,3 @@ def setup():
     yield login_page
     # Pos condicao
     login_page.close()
-

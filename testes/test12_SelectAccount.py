@@ -1,5 +1,3 @@
-import time
-
 from pages.AccountPage import AccountPage
 from pages.CustomerPage import CustomerPage
 
@@ -15,6 +13,3 @@ class Test_AddDeposit:
         account_page = AccountPage(driver=login_page.driver)
         valor = account_page.select_second_account()
         assert valor == 'Conta alterada', "Conta não foi alterada"
-
-
-

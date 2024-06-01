@@ -3,6 +3,7 @@ from pages.OpenAccountPage import OpenAccountPage
 
 class Test_OpenAccount:
     def test_addCustomers(self, setup):
+
         login_page = setup
         login_page.click_bank_manager_login_button()
 
@@ -13,6 +14,5 @@ class Test_OpenAccount:
         open_account_page.select_first_customer()
         open_account_page.select_first_coin()
         open_account_page.click_process_button()
+        assert open_account_page.is_alert_visible()
         open_account_page.click_alert()
-
-

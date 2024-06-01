@@ -1,7 +1,6 @@
 from pages.CustomerPage import CustomerPage
 from pages.TransactionsPage import TransactionsPage
 
-
 class Test_ResetTransactions:
     def test_reset_transactions(self, setup):
         login_page = setup

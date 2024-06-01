@@ -13,6 +13,4 @@ class Test_OrderCustomerByName:
 
         order_customer_by_name_page = ListPage(driver=login_page.driver)
         order_customer_by_name_page.verify_order_by_name()
-        print(order_customer_by_name_page.first_elements_row())
-        print(sorted(order_customer_by_name_page.first_elements_row()))
-        assert order_customer_by_name_page.first_elements_row() == sorted(order_customer_by_name_page.first_elements_row()),'Não está em ordem alfabética crescente'
+        assert order_customer_by_name_page.first_elements_column() == sorted(order_customer_by_name_page.first_elements_column()), 'Não está em ordem alfabética crescente'

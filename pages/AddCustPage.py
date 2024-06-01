@@ -5,11 +5,10 @@ from pages.PageObject import PageObject
 
 class AddCustPage(PageObject):
 
-    url_addcust = 'https://www.globalsqa.com/angularJs-protractor/BankingProject/#/manager/addCust'
-
     first_name = (By.CSS_SELECTOR, '[ng-model="fName"]')
     last_name = (By.CSS_SELECTOR, '[ng-model="lName"]')
     post_code = (By.CSS_SELECTOR, '[ng-model="postCd"]')
+
     add_customer_button = (By.CSS_SELECTOR, '[type="submit"]')
     alert_mensage = 'Please check the details. Customer may be duplicate.'
 
@@ -24,9 +23,7 @@ class AddCustPage(PageObject):
     def __init__(self, driver):
         super(AddCustPage, self).__init__(driver=driver)
 
-    def is_url_add_customer(self):
-        return self.is_url(self.url_addcust)
-
+    # Insere primeiro nome, último nome e CEP
     def type_text(self):
         type_text_element1 = WebDriverWait(self.driver, 5).until(
             expected_conditions.element_to_be_clickable(self.first_name))
@@ -40,11 +37,13 @@ class AddCustPage(PageObject):
             expected_conditions.element_to_be_clickable(self.post_code))
         type_text_element3.send_keys(self.post_code_user)
 
+    # Clica no botão "Adicionar cliente"
     def click_add_customer_button(self):
         add_customer_button_element = WebDriverWait(self.driver, 5).until(
             expected_conditions.element_to_be_clickable(self.add_customer_button))
         add_customer_button_element.click()
 
+    # Insere primeiro nome, último nome e CEP já exisitentes"
     def type_duplicate_name(self):
         type_duplicate_first_name_element = WebDriverWait(self.driver, 5).until(
             expected_conditions.element_to_be_clickable(self.first_name))
@@ -58,16 +57,15 @@ class AddCustPage(PageObject):
             expected_conditions.element_to_be_clickable(self.post_code))
         type_text_element3.send_keys(self.post_code_duplicate)
 
-    def text_alert(self):
+    # Verificar se o texto do alerta é exibido
+    def is_text_alert_visible(self):
         alert_text = WebDriverWait(self.driver, 5).until(expected_conditions.Alert).text
         if (alert_text  == self.alert_mensage):
             return 'Cliente pode está duplicado'
         else:
             return 'Mensagem exibida não corresponde a mensagem esperada'
 
+    # Clica em "Ok" no alerta
     def click_alert(self):
         alert = WebDriverWait(self.driver, 5).until(expected_conditions.Alert)
         alert.accept()
-
-
-

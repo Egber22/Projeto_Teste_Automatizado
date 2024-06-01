@@ -11,5 +11,6 @@ class PageObject:
     def is_url(self, url):
         return self.driver.current_url == url
 
+    # Fecha navegador
     def close(self):
         self.driver.quit()

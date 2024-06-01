@@ -15,7 +15,6 @@ class Test_AddCustomerDuplicate:
         addCust_duplicate_page.type_duplicate_name()
         addCust_duplicate_page.click_add_customer_button()
 
-        assert addCust_duplicate_page.text_alert() == 'Cliente pode está duplicado', 'Exceção não foi identificada na tela'
+        assert addCust_duplicate_page.is_text_alert_visible() == 'Cliente pode está duplicado', 'Exceção não foi identificada na tela'
 
         addCust_duplicate_page.click_alert()
-
