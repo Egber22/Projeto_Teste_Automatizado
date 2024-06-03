@@ -57,7 +57,7 @@ class AddCustPage(PageObject):
             expected_conditions.element_to_be_clickable(self.post_code))
         type_text_element3.send_keys(self.post_code_duplicate)
 
-    # Verificar se o texto do alerta é exibido
+    # Verifica se o texto do alerta é exibido
     def is_text_alert_visible(self):
         alert_text = WebDriverWait(self.driver, 5).until(expected_conditions.Alert).text
         if (alert_text  == self.alert_mensage):

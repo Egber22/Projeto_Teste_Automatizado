@@ -19,7 +19,7 @@ class CustomerPage(PageObject):
     def __init__(self, driver):
         super(CustomerPage, self).__init__(driver=driver)
 
-    #Abrir página de cliente
+    # Abre página de cliente
     def is_url_customer(self):
       return self.is_url(self.url_customer)
 

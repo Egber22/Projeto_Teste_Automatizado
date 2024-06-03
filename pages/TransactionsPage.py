@@ -12,19 +12,19 @@ class TransactionsPage(PageObject):
     def __init__(self, driver):
         super(TransactionsPage, self).__init__(driver=driver)
 
-    #Clica em "Transactions"
+    # Clica em "Transactions"
     def click_on_transactions(self):
         transactions_element = WebDriverWait(self.driver, 5).until(
             expected_conditions.element_to_be_clickable(self.transactions_button))
         transactions_element.click()
 
-    #Clica em "Reset"
+    # Clica em "Reset"
     def click_on_reset(self):
         reset_element = WebDriverWait(self.driver, 5).until(
             expected_conditions.element_to_be_clickable(self.reset_button))
         reset_element.click()
 
-    #Clica em "Voltar"
+    # Clica em "Voltar"
     def click_back(self):
         back_button_element = WebDriverWait(self.driver, 5).until(
             expected_conditions.element_to_be_clickable(self.back_button))

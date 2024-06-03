@@ -14,5 +14,5 @@ class Test_OpenAccount:
         open_account_page.select_first_customer()
         open_account_page.select_first_coin()
         open_account_page.click_process_button()
-        assert open_account_page.is_alert_visible()
+        assert open_account_page.is_alert_visible(), 'Cliente não foi adicionado.'
         open_account_page.click_alert()
