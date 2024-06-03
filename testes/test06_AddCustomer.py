@@ -14,3 +14,5 @@ class Test_AddCustomers:
         login_addCust_page = AddCustPage(driver=login_page.driver)
         login_addCust_page.type_text()
         login_addCust_page.click_add_customer_button()
+        login_addCust_page.click_alert()
+        assert login_addCust_page.is_customer_added() == '', 'Mensagem exibida não corresponde a mensagem esperada'

@@ -41,3 +41,4 @@ class CustomerPage(PageObject):
             expected_conditions.element_to_be_clickable(self.logout_button ))
         if (url_element.is_displayed()):
             return self.driver.current_url == self.url_costumer_account
+

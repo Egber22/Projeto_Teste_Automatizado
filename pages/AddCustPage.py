@@ -58,12 +58,10 @@ class AddCustPage(PageObject):
         type_text_element3.send_keys(self.post_code_duplicate)
 
     # Verifica se o texto do alerta é exibido
-    def is_text_alert_visible(self):
-        alert_text = WebDriverWait(self.driver, 5).until(expected_conditions.Alert).text
-        if (alert_text  == self.alert_mensage):
-            return 'Cliente pode está duplicado'
-        else:
-            return 'Mensagem exibida não corresponde a mensagem esperada'
+    def is_customer_added(self):
+        text_element = WebDriverWait(self.driver, 5).until(
+            expected_conditions.element_to_be_clickable(self.first_name))
+        return text_element.text
 
     # Clica em "Ok" no alerta
     def click_alert(self):
